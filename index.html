@@ -19,15 +19,13 @@
         .animate-fade { animation: fadeIn 0.5s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Animation Bandeau Défilant */
-        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; }
-        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        /* Animation Bandeau Défilant Améliorée */
+        .marquee-container { overflow: hidden; white-space: nowrap; position: relative; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
+        .marquee-content:hover { animation-play-state: paused; cursor: help; } 
         @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
         
-        /* Barres de progression stylisées */
         .bar-fill { transition: width 1s ease-in-out; }
-        .spin-slow { animation: spin 3s linear infinite; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -59,11 +57,9 @@
         // Configuration PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        // --- CONFIGURATION CRITIQUE (TOKEN DE SECOURS) ---
-        // Utilisé si le Refresh Token n'est pas encore configuré
-        const HARDCODED_DBX_TOKEN = "sl.u.AGOSRE_8GmHWDNYtMzl-LpAx0wk9CUzuncxLDPgfY0a51kiu1CePbFpvDrjnL9fLDVTaWWTLHY853ZGbH0pbc5e29bmrQ_yCZYO-79pPjzNg_LHLWs7n7YXDjwjbEMZzzT_qfxtGJtT-vif5_qOK18GzT4KABf2HVTZC8cCX4B892XIZydlHSNEsDCPBtsVkR_BsteLwbDndtK1HGBG-6XTG1Rbgemf159Qs9Q55uma6yWST6vmw3SYPjI_Uq0bdJrK3paIb2l4_-lJqQdCfvELycFsm8Lk1DCkE1nSnKFo_Q-1MfsBduB9ohCe5louM4ZhdHQKJLeZpGXKHGsgjvtKpToBRbdbMZbbUIEsap4DqEyDmQZ48TuY8N21FKw3UekiaOU3i_LLbRgDqjLls8BVQzWapwqCFNlvloEpQnazP1BIwYS27655HWBXvsmzxkzoa_o27SP8uXNfErWeQUhjrTyIEg58EHP-VPu_e4bM25lH7r5joJvfB0aPkxEhE3gTfpDQP_NqD30Q8JMxvq3YDi_WqKc7tpiHflL23U--ZDZTzVeTm1DXgo0qJ_L82qxQqAEL_jA7YnSFESOm9iuvpqcUXjbcryz6jvrScrbvkMRJ4d2-QaUlt7iYyVuMTQKX9jEp2JatrbxTchexK3Ybz00OaqdJexhQPGpImm7Wawh_E_EnWZVGivzbinVx0REl-ZkwtXkXTHKLRQjb7YSPf3baBTE3egZ1whdXqObQKMz0_eGNVJeEw89ghLgWz8zjUg_AnO7LArAIG4baxwZJmKhRVPRXSaZN789HUOKpQJVOvtAAlP1n-qG0IdR_vXkFL9AMeMLwxNjFWCrlUVmWTQRTDOTLHE6vME-jlpO-KRH54X1wR1dPvv_HAj6FgNA48ZcXNxeVYQOzkhfPwfMTBZM4Fnfu7U-9SoxQMJPCcNGbtvxlFAH_G-OmZfQ1TtX_cPOZ_tDD_XNnACft9JEdHBq4mSotIMctCq0GM51HkisXMAgPEPKcm9OsmX8w3U_o39Nki2Sxs7LO_c1ev36pVGe1mxHYNjlIqSqxy6TXFghl9f6KCScZ7wQua6MbocJ6WLeJnzNCqZnboCZ9Vl-O8f0Gy_RPg5Jz7sig49zW0YoBOsuFu3wAxmOSzuVGqVi0sEaQDdb1RO6znTkVfUb-MIf1qalcSwa7oyi4V8JaKbYkKhH7NMpRCYdR7wffglzBGghJqI6kehP6dyet5Wk2I2y0ltIShmtLMHEiY9iLXnqH13fe_YfcfPx3a_K90gxIJ0xpgNO0zgvQbCGbPSD1a"; 
+        // --- CONFIGURATION CRITIQUE ---
+        const HARDCODED_DBX_TOKEN = "sl.u.AGP_-1ZcOdwC35XJ2qmgGFHchBQHYALaMJkJ_KZBt33HewKMptgHhUCH4eLfiMJMpVaIOfoA20H2wvZ3ouyNGwe_xorBaub67i6DknrztsbRba6lJXu_yR3zF0ftiqQLLNEItHeVnJ47CDVB2DLQF9jD1K5zgax3Shlc6mSc_zbn3cummYNB7_w2PZmd968_Jhbssthino-0NSpxFqpN6IZ75QQ-N0L20zOuCEi_IrbsY0iwUYOz3FqtQWKuhZMOoE2X_VEstKbwiSDN0TZQiT-ZqKjvlJ62CA8cTYlYvDnqTfZlTC9oQQNrnha5rdodAABM33NywpyXECy-WU1ARNaQ9OtBw3GsfXbvhAkuaiuc768sClBwoYv_aNZd0XuxUctYjYs6h-8lmKClkfBlP0Jcgorc74eX8QbKWi_Vh_G3N02ozQByhxfY7SxaCxS20Zkq7-oqJHSpDjjB2zHaruTGsNigadNiqRN7d2GHoPsRzfGC_XDPui14bk2GgaB8yqwQ5C33Rnbkhtue4wlz4XrLECdQg5bzIh2desXeMAKkq47Pp8v4uQvLRzKTEOnrAJMABONhqGGMzzJuhTYo7tegI62kSHOULZnA5Jv6kAAeA8ucnhlcVsR3ncpTl6kiUO6cQn5TQFiqiVE3HzMbAHl3wXOGSs9y920JptmZ9Y6m87FkHrt46Mt5GZKeXhQude-S2_LGVUwpxto3iejATwZL82oRaCSnEOgoFI1Ecec1shYtmw3zbKVZ7Dfx_y2hs7JrCu1Fqojj9ZvzEukJZD3CK12zaRyIPUUE9UftfrAuhQr-QuwYxW5glkFZMH-m967L3PIvFgOwn4r8CM6s393v6Sl6zY0tEp0KscRWP1qcb8krPdpDMAmEEVWaPeR10j8q5S-VI3JdS2AoXH1BiHuVus91IfBX1J4vBgNa7KPlYgyyqRoWrr8XvYNwMN3Lh4nsdmohRshsJfM-7kimuXw6zR0BUxR7tiC1lKgD3ujk9iK8hh5eBr_iwBqMVWTKVgcdMEfF6Ag9jiuJSrzpmDW73dAweTO3-8NRohFn_KHjng9wqOnGbg4owZDWTsd9aQORU2xWjWSpakPOfI8fi1My8_S1Q8do8Vf9DO5PrWDBBLTG7bmslXAMUL72undLhv9AItBHkSlXMWvdh37g5uL0rYUjs2W9n1l7PbAS3BDfFhYng7uT_fkeFylf3iMWEf0efznRph2GorfaEfsZfc5Gy-oVUUSkVVQhlPKYrro_GgxdU4fXKzcEGX4ykPK9UybtvGF7Z63fQy6mY8KNIcOJ"; 
         
-        // Comptes par défaut (toujours disponibles en secours)
         const DEFAULT_USERS = [
             { id: 'admin', pass: 'admin', role: 'admin', name: 'Administrateur', searchCount: 0 },
             { id: 'collab', pass: '1234', role: 'viewer', name: 'Collaborateur', searchCount: 0 }
@@ -85,153 +81,66 @@
 
         const delay = ms => new Promise(res => setTimeout(res, ms));
 
-        // --- OAUTH HELPERS ---
-        const exchangeCodeForToken = async (code, appKey, appSecret) => {
-            const details = { 'code': code, 'grant_type': 'authorization_code', 'client_id': appKey, 'client_secret': appSecret };
-            const formBody = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
-            const res = await fetch('https://api.dropbox.com/oauth2/token', {
-                method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: formBody
-            });
-            if(!res.ok) throw new Error(await res.text());
-            return await res.json();
-        };
-
-        const refreshAccessToken = async (refreshToken, appKey, appSecret) => {
+        // --- API HELPERS ---
+        const fetchWithRetry = async (url, options, retries = 3, backoff = 1000) => {
             try {
-                const details = { 'grant_type': 'refresh_token', 'refresh_token': refreshToken, 'client_id': appKey, 'client_secret': appSecret };
-                const formBody = Object.keys(details).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(details[key])).join('&');
-                const res = await fetch('https://api.dropbox.com/oauth2/token', {
-                    method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: formBody
-                });
-                const data = await res.json();
-                if(data.access_token) return data.access_token;
-                throw new Error("Pas de token dans la réponse refresh");
-            } catch(e) {
-                console.error("Echec Refresh:", e);
-                return null;
+                const res = await fetch(url, options);
+                if (!res.ok) {
+                    if (res.status >= 500 || res.status === 429) throw new Error(`HTTP ${res.status}`);
+                    // Détection précise de l'expiration pour les tokens simples
+                    const errorText = await res.text();
+                    if(errorText.includes("expired_access_token")) throw new Error("EXPIRED_TOKEN");
+                    throw new Error(errorText);
+                }
+                return res;
+            } catch (err) {
+                if(err.message === "EXPIRED_TOKEN") throw err; // Pas de retry si expiré
+                if (retries > 0) {
+                    await delay(backoff);
+                    return fetchWithRetry(url, options, retries - 1, backoff * 2);
+                }
+                throw err;
             }
         };
 
-        // --- API MANAGER ---
-        // Remplace fetchWithRetry pour intégrer le refresh automatique
-        const apiFetch = async (url, options, config, setConfig) => {
-            // Fonction interne récursive
-            const doRequest = async (token, retries = 3) => {
-                const headers = { ...options.headers };
-                if (token) headers['Authorization'] = `Bearer ${token}`;
-
-                try {
-                    const res = await fetch(url, { ...options, headers });
-                    
-                    // 1. Gestion Expiration Token (401)
-                    if (res.status === 401 && config.refreshToken && config.appKey && config.appSecret) {
-                        console.warn("Token expiré (401). Tentative de rafraîchissement...");
-                        const newToken = await refreshAccessToken(config.refreshToken, config.appKey, config.appSecret);
-                        if (newToken) {
-                            // Sauvegarde du nouveau token
-                            const newConfig = { ...config, token: newToken };
-                            setConfig(newConfig);
-                            localStorage.setItem('tdbx_config', JSON.stringify(newConfig));
-                            // Retry immédiat avec le nouveau token
-                            return await doRequest(newToken, retries);
-                        }
-                    }
-
-                    // 2. Gestion Rate Limit (429) ou Erreur Serveur (5xx)
-                    if (!res.ok && (res.status === 429 || res.status >= 500)) {
-                        if (retries > 0) {
-                            await delay(1500);
-                            return await doRequest(token, retries - 1);
-                        }
-                    }
-                    
-                    // 3. Autres erreurs ou succès
-                    if (!res.ok) throw new Error(await res.text());
-                    return res;
-
-                } catch (err) {
-                    if (retries > 0) { await delay(1000); return await doRequest(token, retries - 1); }
-                    throw err;
-                }
-            };
-            
-            // Premier appel avec le token actuel
-            return doRequest(config.token);
-        };
-
-        // --- WRAPPERS SERVICES DROPBOX ---
-        const DROPBOX_API_URL = "https://api.dropboxapi.com/2";
-        const DROPBOX_CONTENT_URL = "https://content.dropboxapi.com/2";
-
-        const dbxListFolder = async (config, setConfig) => {
-            const res = await apiFetch(`${DROPBOX_API_URL}/files/list_folder`, {
+        const dbxListFolder = async (token, path) => {
+            const res = await fetchWithRetry(`https://api.dropboxapi.com/2/files/list_folder`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path: config.pathTarifs === '/' ? '' : config.pathTarifs, recursive: false })
-            }, config, setConfig);
+                headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: path === '/' ? '' : path, recursive: false })
+            });
             return await res.json();
         };
 
-        const dbxListFolderFiches = async (config, setConfig) => {
-            const res = await apiFetch(`${DROPBOX_API_URL}/files/list_folder`, {
+        const dbxDownloadFile = async (token, path) => {
+            const res = await fetchWithRetry(`https://content.dropboxapi.com/2/files/download`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path: config.pathFT === '/' ? '' : config.pathFT, recursive: false })
-            }, config, setConfig);
-            return await res.json();
-        };
-
-        const dbxDownloadFile = async (config, setConfig, path) => {
-            const res = await apiFetch(`${DROPBOX_CONTENT_URL}/files/download`, {
-                method: 'POST',
-                headers: { 'Dropbox-API-Arg': JSON.stringify({ path }) }
-            }, config, setConfig);
+                headers: { 'Authorization': `Bearer ${token}`, 'Dropbox-API-Arg': JSON.stringify({ path }) }
+            });
             return await res.blob();
         };
 
-        const dbxGetLink = async (config, setConfig, path) => {
-            const res = await apiFetch(`${DROPBOX_API_URL}/files/get_temporary_link`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ path })
-            }, config, setConfig);
-            return await res.json();
-        };
-
-        const dbxUploadFile = async (config, setConfig, path, content) => {
-            const res = await apiFetch(`${DROPBOX_CONTENT_URL}/files/upload`, {
+        const dbxUploadFile = async (token, path, content) => {
+            const res = await fetchWithRetry(`https://content.dropboxapi.com/2/files/upload`, {
                 method: 'POST',
                 headers: { 
+                    'Authorization': `Bearer ${token}`, 
                     'Dropbox-API-Arg': JSON.stringify({ path, mode: 'overwrite', mute: true }),
                     'Content-Type': 'application/octet-stream'
                 },
                 body: content
-            }, config, setConfig);
+            });
             return await res.json();
         };
 
-        // --- IA GOOGLE ---
         const callIA = async (payload, key, retryCount = 0) => {
-            const modelVersion = 'gemini-2.5-flash-preview-09-2025';
             if (!key) throw new Error("Clé API Gemini manquante");
-
             try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelVersion}:generateContent?key=${key}`, {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${key}`, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
                 });
-                
-                if (res.status === 429) {
-                    if (retryCount < 3) {
-                        const waitTime = 2000 * Math.pow(2, retryCount);
-                        await delay(waitTime);
-                        return callIA(payload, key, retryCount + 1);
-                    }
-                    throw new Error("Quota IA épuisé (429).");
-                }
-                if (!res.ok) {
-                    const errorData = await res.json();
-                    throw new Error(errorData.error?.message || `Erreur IA HTTP ${res.status}`);
-                }
+                if (res.status === 429 && retryCount < 3) { await delay(2000); return callIA(payload, key, retryCount + 1); }
+                if (!res.ok) throw new Error("Erreur IA");
                 return await res.json();
             } catch (e) { throw e; }
         };
@@ -268,6 +177,133 @@
             return <span ref={iconRef} className="inline-flex items-center justify-center" />;
         };
 
+        // --- COMPOSANT FILE VIEWER (MEMOIRE VOLATILE) ---
+        const FileViewer = ({ file, onClose, onDownload }) => {
+            const [contentUrl, setContentUrl] = useState(null);
+            const [fileType, setFileType] = useState(null);
+            const [pdfDoc, setPdfDoc] = useState(null);
+            const [pageNum, setPageNum] = useState(1);
+            const [error, setError] = useState(null);
+            const canvasRef = useRef(null);
+
+            useEffect(() => {
+                if (!file || !file.blob) return;
+                
+                const url = URL.createObjectURL(file.blob);
+                setContentUrl(url);
+                
+                // Détection type
+                const lowerName = file.name.toLowerCase();
+                if (lowerName.endsWith('.pdf')) {
+                    setFileType('pdf');
+                    // Init PDF.js
+                    const loadingTask = pdfjsLib.getDocument(url);
+                    loadingTask.promise.then(pdf => {
+                        setPdfDoc(pdf);
+                    }, err => {
+                        console.error('Erreur chargement PDF:', err);
+                        setError("Impossible de lire le PDF.");
+                    });
+                } else if (lowerName.match(/\.(jpeg|jpg|png|gif|webp)$/)) {
+                    setFileType('image');
+                } else {
+                    setError("Format non supporté pour la prévisualisation.");
+                }
+
+                // Cleanup: libérer la mémoire quand le composant est démonté
+                return () => {
+                    URL.revokeObjectURL(url);
+                };
+            }, [file]);
+
+            useEffect(() => {
+                if (fileType === 'pdf' && pdfDoc && canvasRef.current) {
+                    renderPage(pageNum);
+                }
+            }, [pdfDoc, pageNum, fileType]);
+
+            const renderPage = (num) => {
+                pdfDoc.getPage(num).then(page => {
+                    const canvas = canvasRef.current;
+                    const context = canvas.getContext('2d');
+                    
+                    // Calcul échelle pour fit width/height
+                    const viewport = page.getViewport({ scale: 1.5 });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    const renderContext = {
+                        canvasContext: context,
+                        viewport: viewport
+                    };
+                    page.render(renderContext);
+                });
+            };
+
+            return (
+                <div className="fixed inset-0 bg-slate-900/95 z-[100] flex flex-col animate-fade">
+                    {/* Toolbar */}
+                    <div className="flex justify-between items-center p-4 bg-slate-800 text-white shadow-md">
+                        <div className="flex items-center gap-3">
+                            <div className="p-2 bg-blue-600 rounded-lg"><Icon name="FileText" size={20}/></div>
+                            <div>
+                                <h3 className="font-bold text-sm md:text-base">{file.name}</h3>
+                                <p className="text-xs text-slate-400">Mode Lecture (Mémoire Volatile)</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-2">
+                            <button onClick={() => onDownload(file)} className="p-2 bg-slate-700 hover:bg-green-600 rounded-lg transition-colors flex items-center gap-2 text-sm font-bold">
+                                <Icon name="Download" size={16}/> <span className="hidden md:inline">Sauvegarder</span>
+                            </button>
+                            <button onClick={onClose} className="p-2 bg-red-600 hover:bg-red-700 rounded-lg transition-colors">
+                                <Icon name="X" size={20}/>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 overflow-auto flex justify-center p-4">
+                        {error ? (
+                            <div className="text-white flex flex-col items-center justify-center">
+                                <Icon name="AlertTriangle" size={48} className="text-yellow-500 mb-4"/>
+                                <p>{error}</p>
+                            </div>
+                        ) : (
+                            <>
+                                {fileType === 'image' && (
+                                    <img src={contentUrl} alt="Preview" className="max-w-full h-auto object-contain rounded shadow-lg" />
+                                )}
+                                {fileType === 'pdf' && (
+                                    <div className="flex flex-col items-center gap-4">
+                                        <canvas ref={canvasRef} className="shadow-2xl rounded-sm bg-white"/>
+                                        {pdfDoc && (
+                                            <div className="fixed bottom-8 bg-slate-800/90 text-white px-6 py-3 rounded-full flex items-center gap-6 shadow-xl backdrop-blur">
+                                                <button 
+                                                    disabled={pageNum <= 1} 
+                                                    onClick={() => setPageNum(p => p - 1)}
+                                                    className="hover:text-blue-400 disabled:opacity-30 disabled:cursor-not-allowed"
+                                                >
+                                                    <Icon name="ArrowLeft" size={24}/>
+                                                </button>
+                                                <span className="font-mono font-bold">{pageNum} / {pdfDoc.numPages}</span>
+                                                <button 
+                                                    disabled={pageNum >= pdfDoc.numPages} 
+                                                    onClick={() => setPageNum(p => p + 1)}
+                                                    className="hover:text-blue-400 disabled:opacity-30 disabled:cursor-not-allowed"
+                                                >
+                                                    <Icon name="ArrowRight" size={24}/>
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
         // --- APPLICATION ---
         function App() {
             // STATE
@@ -280,16 +316,7 @@
             const [fiches, setFiches] = useState([]); 
             const [dbHistory, setDbHistory] = useState([]);
             const [dbMeta, setDbMeta] = useState(null);
-            // Config enrichie pour OAuth
-            const [dbxConfig, setDbxConfig] = useState({ 
-                token: HARDCODED_DBX_TOKEN, 
-                refreshToken: '', 
-                appKey: '', 
-                appSecret: '', 
-                pathTarifs: '/Tarifs', 
-                pathFT: '/Fiches', 
-                geminiKey: '' 
-            });
+            const [dbxConfig, setDbxConfig] = useState({ token: HARDCODED_DBX_TOKEN, pathTarifs: '/Tarifs', pathFT: '/Fiches', geminiKey: '' });
             
             const [view, setView] = useState('login'); 
             const [activeTab, setActiveTab] = useState('search'); 
@@ -301,11 +328,14 @@
             const [showQuoteModal, setShowQuoteModal] = useState(false);
             const [currentQuote, setCurrentQuote] = useState(null);
 
+            // VIEWER STATE
+            const [viewerFile, setViewerFile] = useState(null); // { name: string, blob: Blob }
+            const [isDownloading, setIsDownloading] = useState(false); // Spinner chargement fichier
+
             // ADMIN UI
             const [showAdminUploadModal, setShowAdminUploadModal] = useState(false);
             const [adminUploadMode, setAdminUploadMode] = useState('new');
             const [targetTarifId, setTargetTarifId] = useState('');
-            const [authCode, setAuthCode] = useState(''); // Code OAuth
             
             // USER EDIT UI
             const [editingUserIdx, setEditingUserIdx] = useState(null);
@@ -326,7 +356,6 @@
 
                 if (storedConfig) {
                     const parsed = JSON.parse(storedConfig);
-                    // Priorité au token hardcodé s'il est plus récent ou présent
                     if(HARDCODED_DBX_TOKEN && (!parsed.token || parsed.token !== HARDCODED_DBX_TOKEN)) parsed.token = HARDCODED_DBX_TOKEN;
                     setDbxConfig(parsed);
                 } else if(HARDCODED_DBX_TOKEN) {
@@ -349,46 +378,16 @@
             // --- AUTO REFRESH (POLLING) ---
             useEffect(() => {
                 let interval;
-                
-                // Déclencher le chargement immédiat si token présent, même sans user connecté (pour mettre à jour les accès)
                 if (dbxConfig.token) {
-                    // Chargement initial "silencieux" mais crucial pour les accès
                     loadCloudDatabase(true); 
 
-                    // Polling toutes les 60s pour les mises à jour auto (background)
                     interval = setInterval(() => {
                         console.log("Auto-refreshing data...");
-                        loadCloudDatabase(true); // true = silent mode
+                        loadCloudDatabase(true); 
                     }, 60000);
                 }
                 return () => clearInterval(interval);
-            }, [dbxConfig.token]); // Correction: plus de dépendance sur currentUser
-
-            // --- OAUTH FLOW ---
-            const handleExchangeCode = async () => {
-                if(!authCode || !dbxConfig.appKey || !dbxConfig.appSecret) return alert("Infos manquantes (App Key, Secret, Code).");
-                setSyncStatus('working');
-                try {
-                    const data = await exchangeCodeForToken(authCode, dbxConfig.appKey, dbxConfig.appSecret);
-                    
-                    const newConfig = { 
-                        ...dbxConfig, 
-                        token: data.access_token, 
-                        refreshToken: data.refresh_token // LE SAINT GRAAL
-                    };
-                    setDbxConfig(newConfig);
-                    localStorage.setItem('tdbx_config', JSON.stringify(newConfig));
-                    
-                    setSyncLog("✅ Refresh Token configuré avec succès !");
-                    setSyncStatus('success');
-                    setAuthCode('');
-                    alert("Succès ! Connexion permanente établie.");
-                } catch(e) {
-                    setSyncLog("❌ Erreur OAuth : " + e.message);
-                    setSyncStatus('error');
-                    alert("Erreur : " + e.message);
-                }
-            };
+            }, [dbxConfig.token]); 
 
             // --- CLOUD OPERATIONS ---
             const saveToCloud = async (newTarifs, newFiches, newHistory, newUsers) => {
@@ -399,34 +398,28 @@
                     fiches: newFiches || fiches,
                     users: newUsers || users 
                 };
-                // Utilisation de apiFetch via les wrappers
-                await dbxUploadFile(dbxConfig, setDbxConfig, '/db_tarifs.json', new Blob([JSON.stringify(dataToSave)], { type: 'application/json' }));
+                await dbxUploadFile(dbxConfig.token, '/db_tarifs.json', new Blob([JSON.stringify(dataToSave)], { type: 'application/json' }));
             };
 
             const loadCloudDatabase = async (silent = false) => {
-                if (!dbxConfig.token && !dbxConfig.refreshToken) return;
+                if (!dbxConfig.token) return;
                 if (!silent) { setSyncStatus('working'); setSyncLog("Chargement Cloud..."); }
                 
                 try {
-                    const blob = await dbxDownloadFile(dbxConfig, setDbxConfig, '/db_tarifs.json');
+                    const blob = await dbxDownloadFile(dbxConfig.token, '/db_tarifs.json');
                     const text = await blob.text();
                     const data = JSON.parse(text);
                     
                     setTarifs(data.tarifs || []);
                     setFiches(data.fiches || []);
-                    // Mise à jour de l'historique depuis le cloud
                     if (data.history && Array.isArray(data.history)) {
                         setDbHistory(data.history);
                     }
                     if (data.meta) setDbMeta(data.meta);
                     
-                    // Mise à jour CRITIQUE des utilisateurs pour le login
                     if (data.users && Array.isArray(data.users)) {
                         setUsers(data.users);
-                        // On force la persistance locale des users pour le prochain reload
                         localStorage.setItem('tdbx_users', JSON.stringify(data.users));
-                        
-                        // Si l'utilisateur est connecté, on met à jour ses droits
                         if(currentUser) {
                             const updatedCurrentUser = data.users.find(u => u.id === currentUser.id);
                             if(updatedCurrentUser) setCurrentUser(updatedCurrentUser);
@@ -439,7 +432,6 @@
                     if(e.message === "EXPIRED_TOKEN") {
                          setSyncStatus('error');
                          setSyncLog("❌ Token Expiré");
-                         // Ne pas alerter en boucle silencieuse, mais l'afficher dans l'UI
                     } else if (!silent) { setSyncLog("⚠️ Erreur Sync : " + e.message); setSyncStatus('error'); }
                 }
             };
@@ -458,8 +450,7 @@
                     setCurrentQuote(randomQuote);
                     setShowQuoteModal(true);
 
-                    // Demande config si rien du tout
-                    if (!dbxConfig.token && !dbxConfig.refreshToken && !HARDCODED_DBX_TOKEN) setShowConfigModal(true);
+                    if (!dbxConfig.token && !HARDCODED_DBX_TOKEN) setShowConfigModal(true);
                 } else {
                     setLoginError('Identifiants incorrects');
                 }
@@ -473,24 +464,43 @@
                 setActiveTab('search');
             };
 
-            // --- ACTIONS ---
-            const openFile = async (path) => {
+            // --- ACTIONS LECTURE FICHIER ---
+            
+            // 1. Ouvrir en mode Lecteur (Télécharge en RAM)
+            const openFileInViewer = async (path, name) => {
+                if (!dbxConfig.token) return alert("Token manquant");
+                setIsDownloading(true);
                 try {
-                    const data = await dbxGetLink(dbxConfig, setDbxConfig, path);
-                    if(data.link) window.open(data.link, '_blank');
-                } catch(e) { 
-                    if(e.message === "EXPIRED_TOKEN") alert("Le Token Dropbox a expiré. Veuillez le mettre à jour dans l'Admin.");
-                    else alert("Erreur ouverture : " + e.message); 
+                    // Téléchargement du fichier binaire (Blob)
+                    const blob = await dbxDownloadFile(dbxConfig.token, path);
+                    setViewerFile({ name, blob });
+                } catch(e) {
+                    if(e.message === "EXPIRED_TOKEN") alert("Token expiré. Veuillez contacter l'admin.");
+                    else alert("Erreur chargement fichier : " + e.message);
+                } finally {
+                    setIsDownloading(false);
                 }
+            };
+
+            // 2. Sauvegarder sur disque (depuis le Viewer)
+            const saveFileToDisk = (fileObj) => {
+                const url = URL.createObjectURL(fileObj.blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileObj.name;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             };
 
             const handleUploadFiche = async (e) => {
                 const file = e.target.files[0];
-                if (!file) return;
+                if (!file || !dbxConfig.token) return alert("Fichier ou Token manquant.");
                 setIsUploading(true);
                 try {
                     const targetPath = `${dbxConfig.pathFT || '/Fiches'}/${file.name}`;
-                    await dbxUploadFile(dbxConfig, setDbxConfig, targetPath, file);
+                    await dbxUploadFile(dbxConfig.token, targetPath, file);
                     
                     const newFiche = { 
                         id: 'local_' + Date.now(), name: file.name, path: targetPath, type: 'ft', 
@@ -514,7 +524,7 @@
                 } catch (err) { alert("Erreur : " + err.message); } finally { setIsUploading(false); if(uploadInputRef.current) uploadInputRef.current.value = ''; }
             };
 
-            // ... (Fonctions Admin conservées : analyzePDF, handleManualTarifUpload, runFullSync, etc.) ...
+            // ... (Fonctions Admin conservées) ...
             const analyzePDF = async (blob, filename) => {
                 try {
                     const arrayBuffer = await blob.arrayBuffer();
@@ -554,7 +564,7 @@
                 setShowAdminUploadModal(false);
                 try {
                     const targetPath = `${dbxConfig.pathTarifs || '/Tarifs'}/${file.name}`;
-                    const uploadMeta = await dbxUploadFile(dbxConfig, setDbxConfig, targetPath, file);
+                    const uploadMeta = await dbxUploadFile(dbxConfig.token, targetPath, file);
                     const analysis = await analyzePDF(file, file.name);
                     let newTarifs = [...tarifs];
                     if (adminUploadMode === 'update' && targetTarifId) newTarifs = newTarifs.filter(t => t.id !== targetTarifId);
@@ -579,7 +589,7 @@
                 let currentTarifs = [...tarifs];
                 let currentFiches = [...fiches];
                 try {
-                    const listTarifs = await dbxListFolder(dbxConfig, setDbxConfig);
+                    const listTarifs = await dbxListFolder(dbxConfig.token, dbxConfig.pathTarifs);
                     const dbxTarifs = listTarifs.entries.filter(e => e['.tag'] === 'file' && e.name.toLowerCase().endsWith('.pdf'));
                     currentTarifs = currentTarifs.filter(t => dbxTarifs.find(df => df.id === t.id));
                     for (const file of dbxTarifs) {
@@ -587,7 +597,7 @@
                         if (forceAll || !existing || existing.server_modified !== file.server_modified) {
                             setSyncLog(`> Indexation: ${file.name}...`);
                             try {
-                                const blob = await dbxDownloadFile(dbxConfig, setDbxConfig, file.path_lower);
+                                const blob = await dbxDownloadFile(dbxConfig.token, file.path_lower);
                                 await delay(1000);
                                 const analysis = await analyzePDF(blob, file.name);
                                 currentTarifs = currentTarifs.filter(t => t.id !== file.id);
@@ -598,7 +608,7 @@
                     setTarifs(currentTarifs);
                     if (dbxConfig.pathFT) {
                         try {
-                            const listFT = await dbxListFolderFiches(dbxConfig, setDbxConfig);
+                            const listFT = await dbxListFolder(dbxConfig.token, dbxConfig.pathFT);
                             currentFiches = listFT.entries.filter(e => e['.tag'] === 'file').map(f => ({ id: f.id, name: f.name, path: f.path_lower, type: 'ft', server_modified: f.server_modified, index_date: new Date().toLocaleString() }));
                             setFiches(currentFiches);
                         } catch(e) {}
@@ -736,6 +746,25 @@
                 <ErrorBoundary>
                     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 font-sans relative">
                         
+                        {/* VIEWER MODAL (Overlay) */}
+                        {viewerFile && (
+                            <FileViewer 
+                                file={viewerFile} 
+                                onClose={() => setViewerFile(null)} 
+                                onDownload={saveFileToDisk} 
+                            />
+                        )}
+
+                        {/* SPINNER GLOBAL SI DOWNLOAD */}
+                        {isDownloading && (
+                            <div className="fixed inset-0 bg-white/80 z-[110] flex items-center justify-center">
+                                <div className="text-center">
+                                    <Icon name="Loader2" size={48} className="animate-spin text-blue-600 mx-auto"/>
+                                    <p className="mt-4 font-bold text-slate-600">Chargement du document...</p>
+                                </div>
+                            </div>
+                        )}
+
                         {/* BANDEAU ALERTE SI ERREUR SYNC */}
                         {syncStatus === 'error' && (
                             <div className="bg-red-500 text-white text-xs font-bold text-center py-2 px-4 shadow-lg z-[100] sticky top-0">
@@ -920,7 +949,8 @@
                                                             </div>
                                                             <div className="flex items-center justify-between md:justify-end gap-3 pl-14 md:pl-0">
                                                                 <div className="text-2xl font-black text-blue-600 whitespace-nowrap mr-4">{res.price} <span className="text-xs text-slate-400 font-bold">{res.unit || 'DH'}</span></div>
-                                                                <button onClick={() => openFile(res.path)} className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 shadow-sm"><Icon name="Eye" size={14}/> Voir</button>
+                                                                {/* MODIFICATION: Ouvre openFileInViewer au lieu de openFile */}
+                                                                <button onClick={() => openFileInViewer(res.path, res.name)} className="bg-white border border-slate-200 hover:bg-slate-50 text-slate-600 px-4 py-2 rounded-lg text-xs font-bold flex items-center gap-2 shadow-sm"><Icon name="Eye" size={14}/> Voir</button>
                                                             </div>
                                                         </div>
                                                     ))}
@@ -932,12 +962,13 @@
                                                 <h3 className="text-sm font-bold uppercase text-slate-400 mb-4 pl-2 flex items-center gap-2 border-t pt-6 mt-6 md:border-none md:pt-0 md:mt-0"><Icon name="FileText" size={16}/> Fiches ({searchResults.fiches.length})</h3>
                                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                     {searchResults.fiches.map((f, i) => (
-                                                        <div key={i} className="bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group cursor-pointer" onClick={() => openFile(f.path)}>
+                                                        <div key={i} className="bg-white p-4 rounded-2xl border border-slate-100 hover:border-indigo-300 hover:shadow-md transition-all flex items-center justify-between group">
                                                             <div className="flex items-center gap-3">
                                                                 <div className="w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0"><Icon name="FileText" size={20}/></div>
                                                                 <div className="truncate pr-4"><div className="font-bold text-slate-700 truncate">{f.name}</div><div className="text-xs text-slate-400">PDF</div></div>
                                                             </div>
-                                                            <button onClick={() => openFile(f.path)} className="p-2 text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 rounded-lg transition-colors"><Icon name="Eye" size={18}/></button>
+                                                            {/* MODIFICATION: Ouvre openFileInViewer au lieu de openFile */}
+                                                            <button onClick={() => openFileInViewer(f.path, f.name)} className="p-2 text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 rounded-lg transition-colors"><Icon name="Eye" size={18}/></button>
                                                         </div>
                                                     ))}
                                                 </div>
@@ -954,24 +985,6 @@
                                             <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="Settings" /> Paramètres</h3>
                                             <div className="space-y-4">
                                                 <div className="grid gap-1"><label className="text-[10px] font-bold uppercase text-slate-400">Token Dropbox</label><input type="password" value={dbxConfig.token} onChange={e => setDbxConfig({...dbxConfig, token: e.target.value})} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono" /></div>
-                                                
-                                                {/* REFRESH TOKEN OAUTH SECTION */}
-                                                <div className="bg-blue-50 p-3 rounded-xl border border-blue-100">
-                                                    <label className="text-[10px] font-bold uppercase text-blue-700 block mb-2">Connexion Permanente (OAuth)</label>
-                                                    <div className="grid gap-1 mb-2"><input value={dbxConfig.appKey} onChange={e => setDbxConfig({...dbxConfig, appKey: e.target.value})} className="p-2 bg-white border border-blue-200 rounded text-xs" placeholder="App Key"/></div>
-                                                    <div className="grid gap-1 mb-2"><input type="password" value={dbxConfig.appSecret} onChange={e => setDbxConfig({...dbxConfig, appSecret: e.target.value})} className="p-2 bg-white border border-blue-200 rounded text-xs" placeholder="App Secret"/></div>
-                                                    
-                                                    {dbxConfig.appKey && (
-                                                        <a href={`https://www.dropbox.com/oauth2/authorize?client_id=${dbxConfig.appKey}&token_access_type=offline&response_type=code`} target="_blank" className="block w-full text-center bg-blue-600 text-white py-2 rounded-lg text-xs font-bold mb-2 hover:bg-blue-700">1. Autoriser l'App</a>
-                                                    )}
-                                                    
-                                                    <div className="flex gap-2">
-                                                        <input value={authCode} onChange={e => setAuthCode(e.target.value)} className="flex-1 p-2 border rounded-lg text-xs" placeholder="2. Coller le Code"/>
-                                                        <button onClick={handleExchangeCode} disabled={syncStatus === 'working'} className="bg-green-600 text-white px-3 rounded-lg hover:bg-green-700 font-bold text-xs">Valider</button>
-                                                    </div>
-                                                    {dbxConfig.refreshToken && <div className="mt-2 text-[10px] text-green-600 font-bold text-center">✅ Token Permanent Actif</div>}
-                                                </div>
-
                                                 <div className="grid gap-1"><label className="text-[10px] font-bold uppercase text-slate-400">Clé Gemini</label><input type="password" value={dbxConfig.geminiKey} onChange={e => setDbxConfig({...dbxConfig, geminiKey: e.target.value})} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono" /></div>
                                                 <div className="grid gap-1"><label className="text-[10px] font-bold uppercase text-slate-400">Dossier Tarifs</label><input value={dbxConfig.pathTarifs} onChange={e => setDbxConfig({...dbxConfig, pathTarifs: e.target.value})} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs" /></div>
                                                 <div className="grid gap-1"><label className="text-[10px] font-bold uppercase text-slate-400">Dossier Fiches</label><input value={dbxConfig.pathFT} onChange={e => setDbxConfig({...dbxConfig, pathFT: e.target.value})} className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs" /></div>
@@ -1061,5 +1074,4 @@
         root.render(<App />);
     </script>
 </body>
-
 </html>
